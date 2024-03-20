@@ -29,16 +29,16 @@ https://github.com/SiddharthUchil/data_pipeline_airflow_aws/assets/36127139/6abf
    - Initialize the Airflow environment by executing `docker compose up`. Ensure the execution path aligns with the location of the Docker Compose file. Access the Airflow interface via `localhost:8080`.
 
 2. **S3 Bucket Configuration**
-   - Configure an S3 bucket, designated as `primuslearning-enem-bucket`, adapting the naming convention to align with the specific use case.
+   - Configure an S3 bucket, designated as `datapipeline-test03`, adapting the naming convention to align with the specific use case.
 
 3. **IAM User Creation**
-   - Establish an IAM User, `primuslearning-enem`, bestowing administrative privileges and securely storing the access key credentials.
+   - Establish an IAM User, `datapipeline`, bestowing administrative privileges and securely storing the access key credentials.
 
 4. **Airflow AWS Connection Setup**
    - Within the Airflow UI (`localhost:8080`), navigate to the `Admin -> Connections` tab to forge a new AWS connection, `AWSConnection`, utilizing the previously generated access key pair.
 
 5. **Airflow File Upload Procedure**
-   - In the `/dags` directory, craft a Python script, tentatively titled `primuslearning_process_enem_pdf.py`, to manage file uploads to AWS.
+   - In the `/dags` directory, craft a Python script, tentatively titled `process_enem_pdf.py`, to manage file uploads to AWS.
 
 6. **Airflow Variable Configuration**
    - Define a `year` variable within the Airflow UI (`Admin -> Variables`). This variable emulates the `year` parameter, commencing in 2010, with an auto-incrementation mechanism (+1) post-task completion.
