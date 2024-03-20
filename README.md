@@ -1,32 +1,47 @@
 ![AWS Data Pipeline](data_pipeline.png)
 
-Project Credit: João Pedro
 
-Tools to be used for the demo
+https://github.com/SiddharthUchil/data_pipeline_airflow_aws/assets/36127139/6abf0e08-6bb1-4520-92e5-6ab17579f1ce
 
-1. S3 to upload data and create different folders for different reasons
-2. Lambda for extraction of data from pdf to raw json format
-3. Glue for processing of data to get the questions from the data
-4. Airflow: This is a workflow orchestrator. It’s a tool to develop, organize, order, schedule, and monitor tasks using a structure called DAG (Direct Acyclic Graph), The DAGS are all Python code.
 
-The data: The data is from the Brazillian ENEM (National Exam of High School, on literal translation). This exam occurs yearly and is the main entrance door to most public and private Brazilian universities. We will use this data to do some data extraction and get questions from the exam.
+# Project Title
 
-Steps:
+## Technical Specifications for Demonstration
 
-1. Create the airflow environment by running: docker compose up  (make sure you are in the path where the docker compose file is found. Access Airflow through: localhost:8080)
-2. Create an S3 bucket called primuslearning-enem-bucket (give a suitable name for your use case)
-3. Create an IAM User called primuslearning-enem and grant it admin permissions and save the access keys.
-4. In the airflow UI (localhost:8080), under the admin->connections tab, create a new AWS connection, named AWSConnection, using the previously created access key pair.
-5. Uploading files to AWS Using Airflow: Create a Python file inside the /dags folder, I named mine primuslearning_process_enem_pdf.py
-6. Create a ‘year’ variable in the Airflow UI (admin->variables). variable simulates the ‘year’ when the scraping script should execute, starting in 2010 and being automatically incremented (+1) by the end of the task execution.
-7. Create a new Lambda function from scratch, name it process-enem-pdf, choose Python 3.9 runtime. lambda will automatically create an IAM Role. Make sure this role has the read and write permissions in the primuslearning-enem-bucket S3 bucket. Increase the execution time to about 4 mins to the lambda.
-8. Create a Python virtual env with venv: python3 -m venv pdfextractor
-9. Activate the environment and install the dependencies : 
-        source pdfextractor/bin/activate
-        pip3 install pypdf2 typing_extensions
+### Data Storage and Organization
+- **Amazon S3**: Utilized for data storage, with data systematically categorized within distinct folders tailored to their respective purposes.
 
-10. Create a lambda layer and upload to lambda by running: (This has already been done, to ease your work. Just upload the archive.zip file as a layer to aws. bash prepare_lambda_package.sh
-11. Add an S3 Trigger to the lambda function, make sure the suffix is .pdf and the events types: All object create events
-12. Create a glue Crawler to create a catalog of the dataset. Name it: primuslearning-enem-crawler and make sure to select the bucket up to the content folder. Make sure an IAM role is created and also create a database with the name: enem_pdf_project
-13. Create a glue job named: Spark_EnemExtractQuestionsJSON  and paste the code on process_pdf_glue_job.py and execute from airflow for the complete pipeline to be in action.
-14. Make sure to delete all your processes afterwards to avoid the bills
+### Data Extraction Mechanism
+- **AWS Lambda**: Implements functions to facilitate the extraction of data from PDF documents, converting them into a raw JSON structure.
+
+### Data Processing Framework
+- **AWS Glue**: Employed for the intricate processing of data, specifically to distill questions from the comprehensive dataset.
+
+### Workflow Orchestration
+- **Apache Airflow**: Serves as the workflow orchestrator, a robust tool designed to develop, structure, sequence, schedule, and oversee tasks through a construct known as a DAG (Direct Acyclic Graph). All DAGs are scripted in Python.
+
+### Dataset Overview
+- The dataset originates from the Brazilian ENEM (Exame Nacional do Ensino Médio), an annual examination that constitutes the primary gateway to a majority of Brazilian universities. The objective is to utilize this dataset for data extraction and question retrieval.
+
+## Operational Steps
+
+1. **Airflow Environment Initialization**
+   - Initialize the Airflow environment by executing `docker compose up`. Ensure the execution path aligns with the location of the Docker Compose file. Access the Airflow interface via `localhost:8080`.
+
+2. **S3 Bucket Configuration**
+   - Configure an S3 bucket, designated as `primuslearning-enem-bucket`, adapting the naming convention to align with the specific use case.
+
+3. **IAM User Creation**
+   - Establish an IAM User, `primuslearning-enem`, bestowing administrative privileges and securely storing the access key credentials.
+
+4. **Airflow AWS Connection Setup**
+   - Within the Airflow UI (`localhost:8080`), navigate to the `Admin -> Connections` tab to forge a new AWS connection, `AWSConnection`, utilizing the previously generated access key pair.
+
+5. **Airflow File Upload Procedure**
+   - In the `/dags` directory, craft a Python script, tentatively titled `primuslearning_process_enem_pdf.py`, to manage file uploads to AWS.
+
+6. **Airflow Variable Configuration**
+   - Define a `year` variable within the Airflow UI (`Admin -> Variables`). This variable emulates the `year` parameter, commencing in 2010, with an auto-incrementation mechanism (+1) post-task completion.
+
+7. **Lambda Function Deployment**
+   - Construct a new Lambda function, `process-enem-pdf`, opting for the Python 3.9 runtime. The function's creation process will inherently generate an IAM Role. Ascertain that this role possesses the requisite read and write permissions for the `datapipeline-test03` S3 bucket. Modify the execution duration to accommodate the processing needs.
