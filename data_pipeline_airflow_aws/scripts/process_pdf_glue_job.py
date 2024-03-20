@@ -37,6 +37,6 @@ df = (
     .drop("content", "text")
 )
 
-df.write.csv("s3://primuslearning-enem-bucket/processed/", mode="overwrite", header=True)
+df.write.csv("s3://datapipeline-test03/processed/", mode="overwrite", header=True)
 
 job.commit()
