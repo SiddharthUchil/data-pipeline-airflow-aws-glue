@@ -4,8 +4,6 @@
 https://github.com/SiddharthUchil/data_pipeline_airflow_aws/assets/36127139/6abf0e08-6bb1-4520-92e5-6ab17579f1ce
 
 
-# Project Title
-
 ## Technical Specifications for Demonstration
 
 ### Data Storage and Organization
