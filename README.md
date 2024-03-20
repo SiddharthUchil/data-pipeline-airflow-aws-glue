@@ -1,3 +1,7 @@
+# Project Overview
+
+This project aims to leverage cutting-edge cloud technologies to automate the extraction, processing, and analysis of educational data from the Brazilian ENEM exam. By harnessing the power of AWS services such as S3, Lambda, and Glue, coupled with the orchestration capabilities of Apache Airflow, we seek to streamline the workflow from raw data to actionable insights. The end goal is to efficiently retrieve examination questions, paving the way for enhanced educational research and analysis.
+
 ![AWS Data Pipeline](data_pipeline.png)
 
 
