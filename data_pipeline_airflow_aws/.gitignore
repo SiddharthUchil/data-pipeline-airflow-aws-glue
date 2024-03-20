@@ -1,0 +1,9 @@
+data
+logs
+plugins
+secrets
+pdfextractor
+venv/
+venv
+*.zip
+*.csv
